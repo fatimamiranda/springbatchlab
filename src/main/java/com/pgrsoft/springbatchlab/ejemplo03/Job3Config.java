@@ -1,4 +1,4 @@
-package com.pgrsoft.springbatchlab.ejemplo01;
+package com.pgrsoft.springbatchlab.ejemplo03;
 
 import javax.sql.DataSource;
 
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
 @Configuration
-public class Job1Config {
+public class Job3Config {
 	
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
@@ -32,9 +32,9 @@ public class Job1Config {
 	// Configuramos el Job
 	
 	@Bean
-	public Job job1() {
-		return jobBuilderFactory.get("Job1... ller Person de csv y guardar en tabla PEOPLE")
-				.flow(step1())
+	public Job job3() {
+		return jobBuilderFactory.get("Job3... leer Product de csv y guardar en tabla PRODUCTS")
+				.flow(step3())
 				.end()
 				.build();
 	}
@@ -42,32 +42,37 @@ public class Job1Config {
 	// Configuramos el Step
 	
 	@Bean
-	public Step step1() {
-		return stepBuilderFactory.get("step1")
-				.<Person,Person> chunk(10)
-				.reader(reader1())
-				.writer(writer1())
+	public Step step3() {
+		return stepBuilderFactory.get("step3")
+				.<Product,Product> chunk(10)
+				.reader(reader3())
+				.writer(writer3())
 				.build();
 	}
 	
 	// Configuramos el reader
 
-	public FlatFileItemReader<Person> reader1(){
-		return new FlatFileItemReaderBuilder<Person>()
-			.name("reader1")
-			.resource(new FileSystemResource("materiales/entradas/ejemplo01_personas.csv"))
+	public FlatFileItemReader<Product> reader3(){
+		
+		return new FlatFileItemReaderBuilder<Product>()
+			.name("reader3")
+			.resource(new FileSystemResource("materiales/entradas/ejemplo03_productos.csv"))
+			
+			.comments(new String[] {"#"})
+			.linesToSkip(14)
+			
 			.delimited()
-			.names(new String[] {"firstName","lastName"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<Person>(){{
-				setTargetType(Person.class);
+			.names(new String[] {"codigo","nombre","precio","fechaAlta","descatalogado","familia"})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<Product>(){{
+				setTargetType(Product.class);
 			}}).build();
 	}
 	
 	@Bean // Necesario que esté registrado como Bean!!
-	public JdbcBatchItemWriter<Person> writer1(){
-		return new JdbcBatchItemWriterBuilder<Person>()
+	public JdbcBatchItemWriter<Product> writer3(){
+		return new JdbcBatchItemWriterBuilder<Product>()
 				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-				.sql("INSERT INTO PEOPLE (first_name, last_name) VALUES (:firstName, :lastName)")
+				.sql("INSERT INTO PRODUCTS (CODIGO, NOMBRE, PRECIO, FECHA_ALTA, DESCATALOGADO, FAMILIA) VALUES (:codigo, :nombre, :precio, :fechaAlta, :descatalogado, :familia)")
 				.dataSource(dataSource)
 				.build();
 	}

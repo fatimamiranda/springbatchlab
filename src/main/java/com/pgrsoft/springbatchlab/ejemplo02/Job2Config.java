@@ -1,11 +1,13 @@
-package com.pgrsoft.springbatchlab.ejemplo01;
+package com.pgrsoft.springbatchlab.ejemplo02;
 
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
@@ -18,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
 @Configuration
-public class Job1Config {
+public class Job2Config {
 	
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
@@ -29,12 +31,19 @@ public class Job1Config {
 	@Autowired
 	private DataSource dataSource;
 	
+	@Autowired
+	private ItemProcessor<Person,Person> processor;
+	
+	@Autowired
+	private JobExecutionListener listener;
+	
 	// Configuramos el Job
 	
 	@Bean
-	public Job job1() {
-		return jobBuilderFactory.get("Job1... ller Person de csv y guardar en tabla PEOPLE")
-				.flow(step1())
+	public Job job2() {
+		return jobBuilderFactory.get("Job2... ller Person de csv y guardar en tabla PEOPLE")
+				.listener(listener)
+				.flow(step2())
 				.end()
 				.build();
 	}
@@ -42,20 +51,22 @@ public class Job1Config {
 	// Configuramos el Step
 	
 	@Bean
-	public Step step1() {
-		return stepBuilderFactory.get("step1")
-				.<Person,Person> chunk(10)
-				.reader(reader1())
-				.writer(writer1())
+	public Step step2() {
+		return stepBuilderFactory.get("step2")
+				.<Person,Person> chunk(5)
+				.reader(reader2())
+				.processor(processor)
+				.writer(writer2())
 				.build();
 	}
 	
 	// Configuramos el reader
 
-	public FlatFileItemReader<Person> reader1(){
+	public FlatFileItemReader<Person> reader2(){
 		return new FlatFileItemReaderBuilder<Person>()
-			.name("reader1")
-			.resource(new FileSystemResource("materiales/entradas/ejemplo01_personas.csv"))
+			.name("reader2")
+			.resource(new FileSystemResource("materiales/entradas/ejemplo02_personas.csv"))
+			.linesToSkip(3)
 			.delimited()
 			.names(new String[] {"firstName","lastName"})
 			.fieldSetMapper(new BeanWrapperFieldSetMapper<Person>(){{
@@ -64,7 +75,7 @@ public class Job1Config {
 	}
 	
 	@Bean // Necesario que esté registrado como Bean!!
-	public JdbcBatchItemWriter<Person> writer1(){
+	public JdbcBatchItemWriter<Person> writer2(){
 		return new JdbcBatchItemWriterBuilder<Person>()
 				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
 				.sql("INSERT INTO PEOPLE (first_name, last_name) VALUES (:firstName, :lastName)")
