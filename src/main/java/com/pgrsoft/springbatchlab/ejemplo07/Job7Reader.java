@@ -21,7 +21,11 @@ public class Job7Reader implements ItemReader<Product> {
 	@Override
 	public Product read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		
-		return productos.remove(0);
+		if (!productos.isEmpty()) {
+			return productos.remove(0);
+		}
+		
+		return null;
 	}
 
 }
