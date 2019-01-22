@@ -4,8 +4,6 @@ import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
@@ -17,15 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
-@Configuration
-public class Job1Config {
-	
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
-	
-	@Autowired
-	private StepBuilderFactory stepBuilderFactory;
+import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
+@Configuration
+public class Job1Config extends AbstractJobConfig {
+	
 	@Autowired
 	private DataSource dataSource;
 	
