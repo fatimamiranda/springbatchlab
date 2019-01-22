@@ -89,13 +89,13 @@ public class TriggersController {
 	
 	// El parámetro llega como "path variable"
 	
-	@RequestMapping("/job4/{familia}")
-	public String job4(@PathVariable ("familia") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+	@RequestMapping("/job4/{fam}")
+	public String job4(@PathVariable ("fam") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		Map<String,JobParameter> jobParametersMap = new HashMap<>();
 		
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-		jobParametersMap.put("parametro2", new JobParameter(familia));
+		jobParametersMap.put("familia", new JobParameter(familia));
 		
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
 		
@@ -114,7 +114,7 @@ public class TriggersController {
 			Map<String,JobParameter> jobParametersMap = new HashMap<>();
 			
 			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			jobParametersMap.put("parametro2", new JobParameter(familia));
+			jobParametersMap.put("familia", new JobParameter(familia));
 			
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
 			

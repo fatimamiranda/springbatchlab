@@ -9,6 +9,7 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
@@ -16,6 +17,7 @@ import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -36,7 +38,7 @@ public class Job04Config {
 	@Autowired
 	@Qualifier("job4ItemProcessor")
 	private ItemProcessor<Product,Product> processor;
-
+	
 	@Bean
 	public Job job4() {
 		return jobBuilderFactory.get("job4")
@@ -49,14 +51,15 @@ public class Job04Config {
 	public Step step4() {
 		return stepBuilderFactory.get("step4")
 				.<Product,Product> chunk(10)
-				.reader(reader4("HARDWARE"))
+				.reader(reader4(null))
 				.processor(processor)
 				.writer(writer4())
 				.build();
 	}
 	
-	@Bean
-	public JdbcCursorItemReader<Product> reader4 (String familia){
+	@Bean(destroyMethod="") // Acto de FE
+	@StepScope // se instancia un nuevo reader para cada vez que se ejecuta el step...
+	public JdbcCursorItemReader<Product> reader4 (@Value ("#{jobParameters['familia']}") String familia){
 	
 		System.out.println("fase de construcción del reader4");
 		
@@ -68,7 +71,7 @@ public class Job04Config {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
-				ps.setString(1,familia);
+				ps.setString(1,familia.toUpperCase());
 			}
 			
 		});
@@ -103,9 +106,5 @@ public class Job04Config {
  		
 		return writer;
 	}
-	
-	
-	
-	
 
 }
