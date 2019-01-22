@@ -33,6 +33,8 @@ public class Job1Config {
 	
 	@Bean
 	public Job job1() {
+		
+		
 		return jobBuilderFactory.get("Job1... ller Person de csv y guardar en tabla PEOPLE")
 				.flow(step1())
 				.end()
