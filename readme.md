@@ -43,9 +43,22 @@ El endpoint para disparar el job7:
 
 ## ejemplo 8
 
+Objetivo: Leer datos de un fichero XML y escribir en fichero CSV
+
+El endpoint para disparar el job8:
+
+- http://localhost:8080/job8
+
 
 
 ## ejemplo 10
+
+Objetivo: Pasar datos de un fichero csv a una tabla utilizando repositorios de Spring Data (JPA)
+
+
+El endpoint para disparar el job10:
+
+- http://localhost:8080/job10
 
 ## ejemplo 11
 

@@ -43,6 +43,9 @@ public class TriggersController {
 	private Job job7;
 	
 	@Autowired
+	private Job job8;
+	
+	@Autowired
 	private Job job10;
 	
 	@RequestMapping("/job1")
@@ -141,6 +144,22 @@ public class TriggersController {
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
 			
 			jobLauncher.run(job7, jobParameters);
+			
+			return "ok";
+		}
+		
+	//*******************************************************************
+		
+		@RequestMapping("/job8")
+		public String job8() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+			
+			Map<String,JobParameter> jobParametersMap = new HashMap<>();
+			
+			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+			
+			JobParameters jobParameters = new JobParameters(jobParametersMap);
+			
+			jobLauncher.run(job8, jobParameters);
 			
 			return "ok";
 		}
