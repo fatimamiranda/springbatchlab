@@ -24,7 +24,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
 @Configuration
-public class Job04Config {
+public class Job4Config {
 	
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
