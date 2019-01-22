@@ -31,11 +31,23 @@ El endpoint para disparar el job5:
 
 ## ejemplo 7
 
+Objetivo: Utilizar implementaciones sencillas (dummy) de ItemReader e ItemWriter
+
+ItemReader lee la clase ProductDTO
+ItemProcessor mapea de ProductDTO a Product
+ItemWriter escribw Product
+
+El endpoint para disparar el job7:
+
+- http://localhost:8080/job7
+
 ## ejemplo 8
+
+
 
 ## ejemplo 10
 
 ## ejemplo 11
 
-# ejemplo 12
+## ejemplo 12
 
