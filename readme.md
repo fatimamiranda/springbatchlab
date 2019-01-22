@@ -1,10 +1,10 @@
-##ejemplo1
+## ejemplo 1
 
-##ejemplo2
+## ejemplo 2
 
-##ejemplo3
+## ejemplo 3
 
-##ejemplo4
+## ejemplo 4
 
 Objetivo: Pasar datos de la tabla PRODUCTS al fichero materiales/salidas/ejemplo04_productos.csv
 
@@ -17,5 +17,13 @@ Hay dos endpoints para disparar el job4:
 - http://localhost:8080/job4/hardware
 - http://localhost:8080/job4?familia=hardware
 
-##ejemplo7
+## ejemplo 7
+
+## ejemplo 8
+
+## ejemplo 10
+
+## ejemplo 11
+
+# ejemplo 12
 
