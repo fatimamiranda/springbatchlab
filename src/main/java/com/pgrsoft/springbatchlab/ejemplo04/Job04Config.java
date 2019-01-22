@@ -82,6 +82,9 @@ public class Job04Config {
 		
 		FlatFileItemWriter<Product> writer = new FlatFileItemWriter<>();
 		
+		//añade sin crear un fichero nuevo...
+		//writer.setAppendAllowed(true);
+		
 		// dónde
 		
 		writer.setResource(new FileSystemResource("materiales/salidas/ejemplo04_productos.csv"));

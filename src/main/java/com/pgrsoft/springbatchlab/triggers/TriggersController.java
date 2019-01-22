@@ -14,7 +14,9 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -85,12 +87,15 @@ public class TriggersController {
 	
 	//*******************************************************************
 	
-	@RequestMapping("/job4")
-	public String job4() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+	// El parámetro llega como "path variable"
+	
+	@RequestMapping("/job4/{familia}")
+	public String job4(@PathVariable ("familia") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		Map<String,JobParameter> jobParametersMap = new HashMap<>();
 		
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+		jobParametersMap.put("parametro2", new JobParameter(familia));
 		
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
 		
@@ -98,6 +103,25 @@ public class TriggersController {
 		
 		return "ok";
 	}
+	
+	//*******************************************************************
+	
+		// El parámetro llega como "request parameter"
+		
+		@RequestMapping("/job4")
+		public String job4parameter(@RequestParam ("familia") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+			
+			Map<String,JobParameter> jobParametersMap = new HashMap<>();
+			
+			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+			jobParametersMap.put("parametro2", new JobParameter(familia));
+			
+			JobParameters jobParameters = new JobParameters(jobParametersMap);
+			
+			jobLauncher.run(job4, jobParameters);
+			
+			return "ok";
+		}
 	
 	
 	
