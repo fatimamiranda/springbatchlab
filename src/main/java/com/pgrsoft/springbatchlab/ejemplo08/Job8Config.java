@@ -6,27 +6,18 @@ import java.util.Map;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.xml.StaxEventItemReader;
 import org.springframework.batch.item.xml.builder.StaxEventItemReaderBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.oxm.xstream.XStreamMarshaller;
 
-@Configuration
-public class Job8Config {
-	
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
-	
-	@Autowired
-	private StepBuilderFactory stepBuilderFactory;
+import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
-	// Configuramos el Job
+@Configuration
+public class Job8Config extends AbstractJobConfig {
 	
 	@Bean
 	public Job job8() {

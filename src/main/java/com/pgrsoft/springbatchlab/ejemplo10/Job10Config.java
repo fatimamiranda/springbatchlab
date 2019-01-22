@@ -2,8 +2,6 @@ package com.pgrsoft.springbatchlab.ejemplo10;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
@@ -13,15 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
-@Configuration
-public class Job10Config {
+import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
-	
-	@Autowired
-	private StepBuilderFactory stepBuilderFactory;
-	
+@Configuration
+public class Job10Config extends AbstractJobConfig {
+
 	@Autowired
 	private ItemWriter<Proveedor> writer;
 	

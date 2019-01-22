@@ -7,8 +7,6 @@ import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
@@ -23,14 +21,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
+import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
+
 @Configuration
-public class Job4Config {
-	
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
-	
-	@Autowired
-	private StepBuilderFactory stepBuilderFactory;
+public class Job4Config extends AbstractJobConfig {
 	
 	@Autowired
 	private DataSource dataSource;
