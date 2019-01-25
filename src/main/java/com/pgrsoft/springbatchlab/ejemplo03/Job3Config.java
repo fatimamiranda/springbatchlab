@@ -1,7 +1,5 @@
 package com.pgrsoft.springbatchlab.ejemplo03;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -10,7 +8,6 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -19,9 +16,6 @@ import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
 @Configuration
 public class Job3Config extends AbstractJobConfig {
-	
-	@Autowired
-	private DataSource dataSource;
 	
 	// Configuramos el Job
 	

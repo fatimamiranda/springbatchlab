@@ -1,7 +1,5 @@
 package com.pgrsoft.springbatchlab.ejemplo02;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -21,10 +19,7 @@ import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
 @Configuration
 public class Job2Config extends AbstractJobConfig {
-	
-	@Autowired
-	private DataSource dataSource;
-	
+
 	@Autowired
 	private ItemProcessor<Person,Person> processor;
 	

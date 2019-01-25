@@ -6,7 +6,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Job07ItemProcessor implements ItemProcessor<ProductDTO,Product>{
+public class Job7ItemProcessor implements ItemProcessor<ProductDTO,Product>{
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	

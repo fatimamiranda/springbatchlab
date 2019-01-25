@@ -1,7 +1,5 @@
 package com.pgrsoft.springbatchlab.ejemplo01;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -10,7 +8,6 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -20,23 +17,15 @@ import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 @Configuration
 public class Job1Config extends AbstractJobConfig {
 	
-	@Autowired
-	private DataSource dataSource;
-	
-	// Configuramos el Job
-	
+
 	@Bean
 	public Job job1() {
-		
-		
-		return jobBuilderFactory.get("Job1... ller Person de csv y guardar en tabla PEOPLE")
+		return jobBuilderFactory.get("job1")
 				.flow(step1())
 				.end()
 				.build();
 	}
-	
-	// Configuramos el Step
-	
+
 	@Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
@@ -46,8 +35,6 @@ public class Job1Config extends AbstractJobConfig {
 				.build();
 	}
 	
-	// Configuramos el reader
-
 	public FlatFileItemReader<Person> reader1(){
 		return new FlatFileItemReaderBuilder<Person>()
 			.name("reader1")

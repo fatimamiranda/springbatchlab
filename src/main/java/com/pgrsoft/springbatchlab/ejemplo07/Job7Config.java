@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
 @Configuration
-public class Job07Config extends AbstractJobConfig {
+public class Job7Config extends AbstractJobConfig {
 	
 	@Autowired
 	@Qualifier("job7Writer")

@@ -3,8 +3,6 @@ package com.pgrsoft.springbatchlab.ejemplo04;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -25,9 +23,6 @@ import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 
 @Configuration
 public class Job4Config extends AbstractJobConfig {
-	
-	@Autowired
-	private DataSource dataSource;
 	
 	@Autowired
 	@Qualifier("job4ItemProcessor")

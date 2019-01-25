@@ -68,11 +68,8 @@ public class TriggersController {
 	public String job2() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		Map<String,JobParameter> jobParametersMap = new HashMap<>();
-		
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-		
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
-		
 		JobExecution jobExecution = jobLauncher.run(job2, jobParameters);
 		
 		return "estado job2: " + jobExecution.getStatus().toString();
@@ -83,12 +80,9 @@ public class TriggersController {
 	@RequestMapping("/job3")
 	public String job3() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
-		Map<String,JobParameter> jobParametersMap = new HashMap<>();
-		
+		Map<String,JobParameter> jobParametersMap = new HashMap<>();	
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-		
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
-		
 		jobLauncher.run(job3, jobParameters);
 		
 		return "ok";
@@ -102,12 +96,9 @@ public class TriggersController {
 	public String job4(@PathVariable ("fam") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		Map<String,JobParameter> jobParametersMap = new HashMap<>();
-		
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
 		jobParametersMap.put("familia", new JobParameter(familia));
-		
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
-		
 		jobLauncher.run(job4, jobParameters);
 		
 		return "ok";
@@ -124,9 +115,7 @@ public class TriggersController {
 			
 			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
 			jobParametersMap.put("familia", new JobParameter(familia));
-			
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			
 			jobLauncher.run(job4, jobParameters);
 			
 			return "ok";
@@ -140,9 +129,7 @@ public class TriggersController {
 			Map<String,JobParameter> jobParametersMap = new HashMap<>();
 			
 			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			
 			jobLauncher.run(job7, jobParameters);
 			
 			return "ok";
@@ -154,11 +141,8 @@ public class TriggersController {
 		public String job8() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 			
 			Map<String,JobParameter> jobParametersMap = new HashMap<>();
-			
-			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			
+			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));	
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			
 			jobLauncher.run(job8, jobParameters);
 			
 			return "ok";
@@ -170,11 +154,8 @@ public class TriggersController {
 		public String job10() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 			
 			Map<String,JobParameter> jobParametersMap = new HashMap<>();
-			
 			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			
 			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			
 			jobLauncher.run(job10, jobParameters);
 			
 			return "ok";
