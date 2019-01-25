@@ -28,8 +28,8 @@ public class Job15Config extends AbstractJobConfig{
 		return jobBuilderFactory.get("job15")
 				.incrementer(new RunIdIncrementer())
 				.flow(conditionalStep1).on(ExitStatus.FAILED.getExitCode()).to(conditionalStep3)
-				.from(conditionalStep1).on("PEPITO").to(conditionalStep4)
-				.from(conditionalStep1).on("*").to(conditionalStep2)       // BIEN
+				.from(conditionalStep1).on("*").to(conditionalStep4)
+				.from(conditionalStep1).on("PEPITO").to(conditionalStep2)       // BIEN
 				.from(conditionalStep4).next(conditionalStep5)
 				.end()
 				.build();
