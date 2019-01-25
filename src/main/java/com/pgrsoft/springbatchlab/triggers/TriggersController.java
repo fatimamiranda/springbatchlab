@@ -48,6 +48,12 @@ public class TriggersController {
 	@Autowired
 	private Job job10;
 	
+	@Autowired
+	private Job job11;
+	
+	@Autowired
+	private Job job12;
+	
 	@RequestMapping("/job1")
 	public String job1() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
@@ -148,7 +154,9 @@ public class TriggersController {
 			return "ok";
 		}
 	
-	//*******************************************************************
+	
+		
+	/*	//*******************************************************************
 		
 		@RequestMapping("/job10")
 		public String job10() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
@@ -163,8 +171,21 @@ public class TriggersController {
 		
 	//*******************************************************************
 		
-	/*	
 		
+		//*******************************************************************
+		
+		@RequestMapping("/job10")
+		public String job10() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+			
+			Map<String,JobParameter> jobParametersMap = new HashMap<>();
+			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+			JobParameters jobParameters = new JobParameters(jobParametersMap);
+			jobLauncher.run(job10, jobParameters);
+			
+			return "ok";
+		}
+		
+	//*******************************************************************
 		@RequestMapping("/job15")
 		public String job15() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 			
@@ -183,4 +204,32 @@ public class TriggersController {
 		
 	//*******************************************************************
 	*/
+		
+	//*******************************************************************
+		
+		@RequestMapping("/job11")
+		public String job11() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+					
+				Map<String,JobParameter> jobParametersMap = new HashMap<>();
+				jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+				JobParameters jobParameters = new JobParameters(jobParametersMap);
+				jobLauncher.run(job11, jobParameters);
+					
+				return "ok";
+			}
+				
+		//*******************************************************************
+		
+		@RequestMapping("/job12")
+		public String job12() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+					
+				Map<String,JobParameter> jobParametersMap = new HashMap<>();
+				jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+				JobParameters jobParameters = new JobParameters(jobParametersMap);
+				jobLauncher.run(job12, jobParameters);
+					
+				return "ok";
+			}
+				
+		//*******************************************************************
 }
