@@ -160,5 +160,27 @@ public class TriggersController {
 			
 			return "ok";
 		}
-	
+		
+	//*******************************************************************
+		
+	/*	
+		
+		@RequestMapping("/job15")
+		public String job15() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+			
+			Map<String,JobParameter> jobParametersMap = new HashMap<>();
+			
+			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+		//	jobParametersMap.put("fail", new JobParameter("1"));
+		//	jobParametersMap.put("fail", new JobParameter("2"));
+			
+			JobParameters jobParameters = new JobParameters(jobParametersMap);
+			
+			jobLauncher.run(job15, jobParameters);
+			
+			return "ok";
+		}
+		
+	//*******************************************************************
+	*/
 }

@@ -25,7 +25,7 @@ public class Job7Config extends AbstractJobConfig {
 	private ItemWriter<Product> writer;
 	
 	@Autowired
-	@Qualifier("job07ItemProcessor")
+	@Qualifier("job7ItemProcessor")
 	private ItemProcessor<ProductDTO,Product> processor;
 	
 	@Bean
