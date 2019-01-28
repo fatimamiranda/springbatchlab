@@ -24,14 +24,14 @@ public class Job14Config extends AbstractJobConfig{
 	@Bean
 	public Job job14() {
 		
-		Flow masterFlow = (Flow) new FlowBuilder("masterFlow").start(taskletStep("step1")).build();
+		Flow masterFlow = (Flow) new FlowBuilder<Object>("masterFlow").start(taskletStep("stepMaster")).build();
 		
-		Flow flow1 = (Flow) new FlowBuilder("flow1").start(taskletStep("step2")).build();
-		Flow flow2 = (Flow) new FlowBuilder("flow2").start(taskletStep("step3")).build();
-		Flow flow3 = (Flow) new FlowBuilder("flow3").start(taskletStep("step4")).build();
+		Flow flow1 = (Flow) new FlowBuilder<Object>("flow1").start(taskletStep("step1")).build();
+		Flow flow2 = (Flow) new FlowBuilder<Object>("flow2").start(taskletStep("step2")).build();
+		Flow flow3 = (Flow) new FlowBuilder<Object>("flow3").start(taskletStep("step3")).build();
 		
 		// Posibilita la ejecución en paralelo...
-		Flow slaveFlow = (Flow) new FlowBuilder("slaveFlow").split(new SimpleAsyncTaskExecutor())
+		Flow slaveFlow = (Flow) new FlowBuilder<Object>("slaveFlow").split(new SimpleAsyncTaskExecutor())
 				         .add(flow1, flow2, flow3).build();
 	
 		return (jobBuilderFactory.get("job14")
@@ -44,9 +44,9 @@ public class Job14Config extends AbstractJobConfig{
 	
 	private TaskletStep taskletStep(String step) {
 		return stepBuilderFactory.get(step).tasklet((a,b) -> {
-			IntStream.range(1,100).forEach(token -> logger.info("step: " + step + " token: " + token));
-			Thread.sleep((int)(Math.random()* 5000));
-			return RepeatStatus.FINISHED;
+				IntStream.range(1,100)
+					     .forEach(token -> logger.info("step: " + step + " token: " + token));
+				return RepeatStatus.FINISHED;
 		}).build();
 	}
 	

@@ -35,7 +35,7 @@ Objetivo: Utilizar implementaciones sencillas (dummy) de ItemReader e ItemWriter
 
 ItemReader lee la clase ProductDTO
 ItemProcessor mapea de ProductDTO a Product
-ItemWriter escribw Product
+ItemWriter escribe Product
 
 El endpoint para disparar el job7:
 
@@ -50,11 +50,9 @@ El endpoint para disparar el job8:
 - http://localhost:8080/job8
 
 
-
 ## ejemplo 10
 
-Objetivo: Pasar datos de un fichero csv a una tabla utilizando repositorios de Spring Data (JPA)
-
+Objetivo: Pasar datos de un fichero csv a una tabla, utilizando repositorios de Spring Data (JPA)
 
 El endpoint para disparar el job10:
 
@@ -63,4 +61,15 @@ El endpoint para disparar el job10:
 ## ejemplo 11
 
 ## ejemplo 12
+
+## ejemplo 13
+
+## ejemplo 14
+
+Objetivo: Ejecutar steps en paralelo
+
+El endpoint para disparar el job14:
+
+- http://localhost:8080/job14
+
 
