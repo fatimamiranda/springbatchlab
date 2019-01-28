@@ -71,6 +71,14 @@
 			<version>1.4.9</version>
 		</dependency>
 		
+		<!-- Necesario para mostrar páginas con información del repositorio -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		
 		
 	</dependencies>
 

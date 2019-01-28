@@ -21,7 +21,7 @@ public class Job3Config extends AbstractJobConfig {
 	
 	@Bean
 	public Job job3() {
-		return jobBuilderFactory.get("Job3... leer Product de csv y guardar en tabla PRODUCTS")
+		return jobBuilderFactory.get("job3")
 				.flow(step3())
 				.end()
 				.build();

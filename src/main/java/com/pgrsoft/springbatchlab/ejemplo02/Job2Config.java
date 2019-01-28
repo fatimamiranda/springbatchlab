@@ -30,7 +30,7 @@ public class Job2Config extends AbstractJobConfig {
 	
 	@Bean
 	public Job job2() {
-		return jobBuilderFactory.get("Job2... ller Person de csv y guardar en tabla PEOPLE")
+		return jobBuilderFactory.get("job2")
 				.listener(listener)
 				.flow(step2())
 				.end()
