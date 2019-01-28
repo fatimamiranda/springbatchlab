@@ -15,6 +15,7 @@ public class Mapper12 implements FieldSetMapper<Pedido>{
 		pedido.setCantidad(fieldSet.readInt("elA"));
 		
 		//Si no queremos utilizar los nombres...
+		
 		//pedido.setCodigo(fieldSet.readInt(0));
 		//pedido.setCantidad(fieldSet.readInt(1));
 		

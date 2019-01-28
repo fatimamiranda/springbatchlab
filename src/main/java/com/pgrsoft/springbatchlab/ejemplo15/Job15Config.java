@@ -106,7 +106,3 @@ public class Job15Config extends AbstractJobConfig{
 	}
 	
 }
-
-
-
-

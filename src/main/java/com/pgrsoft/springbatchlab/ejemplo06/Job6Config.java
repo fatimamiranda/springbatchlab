@@ -31,6 +31,4 @@ public class Job6Config extends AbstractJobConfig{
 			.tasklet(tasklet)
 			.build();
 	}
-	
-	
 }

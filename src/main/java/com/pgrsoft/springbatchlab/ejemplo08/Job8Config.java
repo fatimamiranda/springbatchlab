@@ -27,8 +27,6 @@ public class Job8Config extends AbstractJobConfig {
 				.build();
 	}
 	
-	// Configuramos el Step
-	
 	@Bean
 	public Step step8() {
 		return stepBuilderFactory.get("step8")
