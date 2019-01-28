@@ -83,4 +83,13 @@ El endpoint para disparar el job14:
 
 - http://localhost:8080/trigger/job14
 
+## ejemplo 15
+
+Objetivo: Ejecutar steps con condicionales.
+
+
+
+El endpoint para disparar el job15:
+
+- http://localhost:8080/trigger/job15
 

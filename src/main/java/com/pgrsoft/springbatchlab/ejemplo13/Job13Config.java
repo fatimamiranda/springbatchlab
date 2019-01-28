@@ -18,13 +18,16 @@ public class Job13Config extends AbstractJobConfig{
 	@Autowired
 	private Step step2;
 	
+	@Autowired
+	private Step step8;
+	
 	@Bean
 	public Job job13() {
 		return jobBuilderFactory.get("job13")
 				.incrementer(new RunIdIncrementer())
 				.start(step1)
 				.next(step2)
-				.next(step2)
+				.next(step8)
 				.next(step2)
 				.next(step2)
 				.build();

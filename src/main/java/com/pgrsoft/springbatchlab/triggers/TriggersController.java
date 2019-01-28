@@ -27,15 +27,13 @@ public class TriggersController {
 	private ApplicationContext context;
 	
 	@Autowired
-//	@Qualifier("syncJobLauncher")
 	@Qualifier("asyncJobLauncher")
-	private JobLauncher jobLauncher;
-	
-	
+	private JobLauncher asyncJobLauncher;
 	
 	@Autowired
-	private Job job2;
-		
+	@Qualifier("syncJobLauncher")
+	private JobLauncher syncJobLauncher;
+			
 	@Autowired
 	private Job job4;
 	
@@ -46,65 +44,42 @@ public class TriggersController {
 	public String endPoint(@PathVariable ("job") String strJob,
 						   @RequestParam(name="p1",required=false) Object p1) throws Exception {
 		
-		launch(strJob);
-
-		return "ok";
+		return launch(strJob);
 	}
 	
-	private void launch(String strJob) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+	private String launch(String strJob) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		Job job = context.getBean(strJob, Job.class);
 		
-		Map<String,JobParameter> jobParametersMap = new HashMap<>();
-					
+		Map<String,JobParameter> jobParametersMap = new HashMap<>();		
 		jobParametersMap.put("parametro1", new JobParameter("parametro_" + System.currentTimeMillis()));
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
-		
-		jobLauncher.run(job, jobParameters);
+		JobExecution jobExecution = asyncJobLauncher.run(job, jobParameters);
+		return "Estado " + strJob + ": " + jobExecution.getStatus().toString();
 	}
-	
-
-	
-	@RequestMapping("/job2")
-	public String job2() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
+	// El parámetro llega como "request parameter"
+		
+	@RequestMapping("/job4")
+	public String job4parameter(@RequestParam ("familia") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+			
+		Map<String,JobParameter> jobParametersMap = new HashMap<>();
+			
+		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+		jobParametersMap.put("familia", new JobParameter(familia));
+		JobParameters jobParameters = new JobParameters(jobParametersMap);
+		asyncJobLauncher.run(job4, jobParameters);
+			
+		return "ok";
+	}
+													
+	@RequestMapping("/job15")
+	public String job15(@RequestParam(name="fail", required=false,  defaultValue="3") String fail) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		Map<String,JobParameter> jobParametersMap = new HashMap<>();
 		jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
+		jobParametersMap.put("fail", new JobParameter(fail));
 		JobParameters jobParameters = new JobParameters(jobParametersMap);
-		JobExecution jobExecution = jobLauncher.run(job2, jobParameters);
-		
-		return "estado job2: " + jobExecution.getStatus().toString();
+		asyncJobLauncher.run(job15, jobParameters);
+		return "ok";
 	}
-	
-	
-	//*******************************************************************
-	
-		// El parámetro llega como "request parameter"
-		
-		@RequestMapping("/job4")
-		public String job4parameter(@RequestParam ("familia") String familia) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-			
-			Map<String,JobParameter> jobParametersMap = new HashMap<>();
-			
-			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			jobParametersMap.put("familia", new JobParameter(familia));
-			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			jobLauncher.run(job4, jobParameters);
-			
-			return "ok";
-		}
-		
-												
-		@RequestMapping("/job15")
-		public String job15(@RequestParam(name="fail", 
-		                                  required=false, 
-		                                  defaultValue="3") String fail) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-			Map<String,JobParameter> jobParametersMap = new HashMap<>();
-			jobParametersMap.put("parametro1", new JobParameter("p_" + System.currentTimeMillis()));
-			jobParametersMap.put("fail", new JobParameter(fail));
-			JobParameters jobParameters = new JobParameters(jobParametersMap);
-			jobLauncher.run(job15, jobParameters);
-			
-			return "ok";
-		}
 }
