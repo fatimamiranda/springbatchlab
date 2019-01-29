@@ -87,9 +87,34 @@ El endpoint para disparar el job14:
 
 Objetivo: Ejecutar steps con condicionales.
 
+Se le pasa el parametrl fail con valores:
+
+- fail=1
+	conditionalStep1 establece ExitStatus = FAILED
+	Se ejecutan los steps:
+	
+	conditionalStep1
+	conditionalStep3
+
+- fail=2
+	conditionalStep1 establece ExitStatus = PEPITO 
+	Se ejecutan los steps:
+	
+	conditionalStep1
+	conditionalStep2
+	conditionalStep4
+	conditionalStep5
+
+- fail=[cualquier valor]
+	conditionalStep1 establece ExitStatus = COMPLETED
+	Se ejecutan los steps:
+	
+	conditionalStep1
+	conditionalStep4
+	conditionalStep5
 
 
 El endpoint para disparar el job15:
 
-- http://localhost:8080/trigger/job15
+- http://localhost:8080/trigger/job15?fail=1
 
