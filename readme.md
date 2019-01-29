@@ -1,8 +1,26 @@
 ## ejemplo 1
 
+Objetivo:
+
+El endpoint para disparar el job1:
+
+- http://localhost:8080/trigger/job1
+
 ## ejemplo 2
 
+Objetivo:
+
+El endpoint para disparar el job2:
+
+- http://localhost:8080/trigger/job2
+
 ## ejemplo 3
+
+Objetivo:
+
+El endpoint para disparar el job3:
+
+- http://localhost:8080/trigger/job3
 
 ## ejemplo 4
 
@@ -32,9 +50,12 @@ El endpoint para disparar el job5:
 
 Objetivo: Utilizar implementaciones sencillas (dummy) de ItemReader e ItemWriter
 
-ItemReader lee la clase ProductDTO
-ItemProcessor mapea de ProductDTO a Product
-ItemWriter escribe Product
+ItemReader: lee la clase ProductDTO
+
+ItemProcessor: mapea de ProductDTO a Product
+
+ItemWriter: escribe Product
+
 
 El endpoint para disparar el job7:
 
@@ -71,6 +92,13 @@ El endpoint para disparar el job12:
 
 ## ejemplo 13
 
+Objetivo: Ejecutar varios steps de forma secuencial.
+
+Se ejecutan steps de ejercicios anteriores.
+La secuencia es: 
+
+	step1, step2, step8, step2 y step2	
+
 El endpoint para disparar el job13:
 
 - http://localhost:8080/trigger/job13
@@ -85,36 +113,29 @@ El endpoint para disparar el job14:
 
 ## ejemplo 15
 
-Objetivo: Ejecutar steps con condicionales.
+Objetivo: Ejecutar steps condicionales.
 
-Se le pasa el parametrl fail con valores:
+El job job15 recibe el parámetro fail. El step conditionalStep recoge el valor de dicho parámetro y resuelve con diferentes códigos de salida.
 
-- fail=1
+- fail = 1
+
 	conditionalStep1 establece ExitStatus = FAILED
-	Se ejecutan los steps:
 	
-	conditionalStep1
-	conditionalStep3
+	Se ejecuta: conditionalStep1 -> conditionalStep3
 
-- fail=2
-	conditionalStep1 establece ExitStatus = PEPITO 
-	Se ejecutan los steps:
+- fail = 2
 	
-	conditionalStep1
-	conditionalStep2
-	conditionalStep4
-	conditionalStep5
+	conditionalStep1 establece ExitStatus = PEPITO
+	
+	Se ejecuta: conditionalStep1 -> conditionalStep2 -> conditionalStep4 -> conditionalStep5
 
-- fail=[cualquier valor]
+- fail = [cualquier otro valor]
+	
 	conditionalStep1 establece ExitStatus = COMPLETED
-	Se ejecutan los steps:
 	
-	conditionalStep1
-	conditionalStep4
-	conditionalStep5
+	Se ejecuta: conditionalStep1 -> conditionalStep4 -> conditionalStep5
 
 
 El endpoint para disparar el job15:
 
 - http://localhost:8080/trigger/job15?fail=1
-

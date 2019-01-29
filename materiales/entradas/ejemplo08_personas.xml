@@ -16,4 +16,12 @@
         <firstName>Bartola</firstName>
         <lastName>Fernández_XML</lastName>
     </person>
+    <person>
+        <firstName>Pepín</firstName>
+        <lastName>Gálvez_XML</lastName>
+    </person>
+    <person>
+        <firstName>Lorena</firstName>
+        <lastName>Lagasca_XML</lastName>
+    </person>
 </personList>
