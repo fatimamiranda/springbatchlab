@@ -14,7 +14,6 @@ JDBC URL: jdbc:h2:mem:testdb
 
 Objetivo:
 
-El endpoint para disparar el job1:
 
 Para disparar el job1: http://localhost:8080/trigger/job1
 
@@ -80,7 +79,6 @@ Para disparar el job7: http://localhost:8080/trigger/job7
 
 Objetivo: Leer datos de un fichero XML y escribir en fichero CSV
 
-El endpoint para disparar el job8:
 
 Para disparar el job8: http://localhost:8080/trigger/job8
 
@@ -89,19 +87,17 @@ Para disparar el job8: http://localhost:8080/trigger/job8
 
 Objetivo: Pasar datos de un fichero csv a una tabla, utilizando repositorios de Spring Data (JPA)
 
-El endpoint para disparar el job10:
-
 Para disparar el job10: http://localhost:8080/trigger/job10
 
 ## ejemplo 11
 
-El endpoint para disparar el job11:
+Objetivo:
 
 Para disparar el job11: http://localhost:8080/trigger/job11
 
 ## ejemplo 12
 
-El endpoint para disparar el job12:
+Objetivo:
 
 Para disparar el job12: http://localhost:8080/trigger/job12
 
@@ -114,7 +110,6 @@ La secuencia es:
 
 	step1, step2, step8, step2 y step2	
 
-El endpoint para disparar el job13:
 
 Para disparar el job13: http://localhost:8080/trigger/job13
 
@@ -122,7 +117,6 @@ Para disparar el job13: http://localhost:8080/trigger/job13
 
 Objetivo: Ejecutar steps en paralelo
 
-El endpoint para disparar el job14:
 
 Para disparar el job14: http://localhost:8080/trigger/job14
 
@@ -151,6 +145,4 @@ El job job15 recibe el parámetro fail. El step conditionalStep recoge el valor 
 	Se ejecuta: conditionalStep1 -> conditionalStep4 -> conditionalStep5
 
 
-El endpoint para disparar el job15:
-
-http://localhost:8080/trigger/job15?fail=1
+Para disparar el job15: http://localhost:8080/trigger/job15?fail=1
