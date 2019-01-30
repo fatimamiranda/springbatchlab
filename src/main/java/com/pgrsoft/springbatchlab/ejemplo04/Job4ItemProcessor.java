@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 public class Job4ItemProcessor implements ItemProcessor<Product,Product> {
 
 	@Override
-	public Product process(Product item) throws Exception {
+	public Product process(Product product) throws Exception {
 		
-		return item;
+		// No hacemos nada..
+		
+		return product;
 	}
 
 }

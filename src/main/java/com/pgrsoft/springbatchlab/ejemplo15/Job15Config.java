@@ -42,7 +42,7 @@ public class Job15Config extends AbstractJobConfig{
 				.tasklet((contribution, chunkContext) -> {
 					
 				// Vamos a recoger el parámetro fail
-				// Desde aquí no sabemos si es un String o en que forma llega
+				// Aquí no sabemos si es un String o en que forma llega
 				// Haremos un casting seguro...
 					
 				StepContext stepContext = chunkContext.getStepContext();

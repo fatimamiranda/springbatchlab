@@ -13,12 +13,12 @@ public class Tasklet6 implements Tasklet{
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 		
 		//StepContribution -> Estado. Es Mutable
-		//ChunkContext -> Atributos compartidos entre invocaciones pero NO entre "reinicios"
+		//ChunkContext     -> Atributos compartidos entre invocaciones pero NO entre "reinicios"
 		
 		System.out.println(contribution);
 		System.out.println("Tasklet6 en ejecución...");
 		
-		//TODO tareas de mantenimiento que no requieren leer ni escribir...
+		//Aquí se harían tareas de mantenimiento que no requieren leer ni escribir...
 		
 		return RepeatStatus.FINISHED;
 	}

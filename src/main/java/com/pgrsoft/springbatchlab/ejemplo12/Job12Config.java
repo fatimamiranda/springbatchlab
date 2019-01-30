@@ -72,13 +72,4 @@ public class Job12Config extends AbstractJobConfig{
 		return tokenizer;
 	}
 	
-	
 }
-
-
-
-
-
-
-
-

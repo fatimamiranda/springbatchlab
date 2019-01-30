@@ -41,7 +41,6 @@ public class Job14Config extends AbstractJobConfig{
 				.build()).build();
 	}
 	
-	
 	private TaskletStep taskletStep(String step) {
 		return stepBuilderFactory.get(step).tasklet((a,b) -> {
 				IntStream.range(1,100)
@@ -49,7 +48,5 @@ public class Job14Config extends AbstractJobConfig{
 				return RepeatStatus.FINISHED;
 		}).build();
 	}
-	
-	
 	
 }

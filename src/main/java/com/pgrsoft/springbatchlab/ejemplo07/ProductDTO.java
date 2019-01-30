@@ -16,9 +16,7 @@ public class ProductDTO implements Serializable {
 		
 	}
 
-	public ProductDTO(String codigo, String nombre, String precio, String fechaAlta, String descatalogado,
-			String familia) {
-		super();
+	public ProductDTO(String codigo, String nombre, String precio, String fechaAlta, String descatalogado, String familia) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precio = precio;

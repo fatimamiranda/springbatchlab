@@ -42,8 +42,6 @@ public class Job11Config extends AbstractJobConfig {
 	@Bean
 	public JsonItemReader<Acreedor> jsonItemReader(){
 		
-		//Vamos a necesitar un mapper
-		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		JacksonJsonObjectReader<Acreedor> jsonObjectReader = new JacksonJsonObjectReader<>(Acreedor.class);

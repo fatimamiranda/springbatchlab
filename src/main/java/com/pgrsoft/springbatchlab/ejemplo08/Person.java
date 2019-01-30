@@ -3,7 +3,7 @@ package com.pgrsoft.springbatchlab.ejemplo08;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-	private static final long serialVersionUID = 1765676L;
+	private static final long serialVersionUID = -41765676L;
 	
 	private String firstName;
 	private String lastName;

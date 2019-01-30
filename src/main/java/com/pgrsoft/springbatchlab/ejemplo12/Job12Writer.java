@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 public class Job12Writer implements ItemWriter<Pedido> {
 
 	@Override
-	public void write(List<? extends Pedido> items) throws Exception {
+	public void write(List<? extends Pedido> pedidos) throws Exception {
 		
-		for(Pedido pedido: items) {
+		for(Pedido pedido: pedidos) {
 			System.out.println(pedido);
 		}
 		

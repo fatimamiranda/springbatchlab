@@ -25,9 +25,7 @@ public class Job2Config extends AbstractJobConfig {
 	
 	@Autowired
 	private JobExecutionListener listener;
-	
-	// Configuramos el Job
-	
+		
 	@Bean
 	public Job job2() {
 		return jobBuilderFactory.get("job2")
@@ -36,9 +34,7 @@ public class Job2Config extends AbstractJobConfig {
 				.end()
 				.build();
 	}
-	
-	// Configuramos el Step
-	
+		
 	@Bean
 	public Step step2() {
 		return stepBuilderFactory.get("step2")
@@ -49,8 +45,6 @@ public class Job2Config extends AbstractJobConfig {
 				.build();
 	}
 	
-	// Configuramos el reader
-
 	public FlatFileItemReader<Person> reader2(){
 		return new FlatFileItemReaderBuilder<Person>()
 			.name("reader2")
@@ -63,7 +57,7 @@ public class Job2Config extends AbstractJobConfig {
 			}}).build();
 	}
 	
-	@Bean // Necesario que esté registrado como Bean!!
+	@Bean
 	public JdbcBatchItemWriter<Person> writer2(){
 		return new JdbcBatchItemWriterBuilder<Person>()
 				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())

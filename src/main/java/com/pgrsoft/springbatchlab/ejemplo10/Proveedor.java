@@ -13,6 +13,7 @@ public class Proveedor implements Serializable {
 	
 	@Id
 	private Long codigo;
+	
 	private String nombre;
 	private String pais;
 	

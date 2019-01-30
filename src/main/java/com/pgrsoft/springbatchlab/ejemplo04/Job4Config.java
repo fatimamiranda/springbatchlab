@@ -74,7 +74,7 @@ public class Job4Config extends AbstractJobConfig {
 		
 		FlatFileItemWriter<Product> writer = new FlatFileItemWriter<>();
 		
-		//añade sin crear un fichero nuevo...
+		//write sin crear un fichero nuevo...
 		//writer.setAppendAllowed(true);
 		
 		// dónde
@@ -88,7 +88,7 @@ public class Job4Config extends AbstractJobConfig {
 		
 		DelimitedLineAggregator<Product> lineAggregator = new DelimitedLineAggregator<>();
 		
-		lineAggregator.setDelimiter(","); // es obligatorio?
+		lineAggregator.setDelimiter(",");
 		lineAggregator.setFieldExtractor(fieldExtractor);
 		
 		writer.setLineAggregator(lineAggregator);

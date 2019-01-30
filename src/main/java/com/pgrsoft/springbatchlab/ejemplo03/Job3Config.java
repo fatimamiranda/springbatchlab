@@ -17,8 +17,6 @@ import com.pgrsoft.springbatchlab.batchconfiguration.AbstractJobConfig;
 @Configuration
 public class Job3Config extends AbstractJobConfig {
 	
-	// Configuramos el Job
-	
 	@Bean
 	public Job job3() {
 		return jobBuilderFactory.get("job3")
@@ -26,8 +24,6 @@ public class Job3Config extends AbstractJobConfig {
 				.end()
 				.build();
 	}
-	
-	// Configuramos el Step
 	
 	@Bean
 	public Step step3() {
@@ -38,8 +34,6 @@ public class Job3Config extends AbstractJobConfig {
 				.build();
 	}
 	
-	// Configuramos el reader
-
 	public FlatFileItemReader<Product> reader3(){
 		
 		return new FlatFileItemReaderBuilder<Product>()
@@ -56,7 +50,7 @@ public class Job3Config extends AbstractJobConfig {
 			}}).build();
 	}
 	
-	@Bean // Necesario que esté registrado como Bean!!
+	@Bean
 	public JdbcBatchItemWriter<Product> writer3(){
 		return new JdbcBatchItemWriterBuilder<Product>()
 				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())

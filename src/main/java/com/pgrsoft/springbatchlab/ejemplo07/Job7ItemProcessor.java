@@ -11,16 +11,16 @@ public class Job7ItemProcessor implements ItemProcessor<ProductDTO,Product>{
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Override
-	public Product process(ProductDTO item) throws Exception {
+	public Product process(ProductDTO productDTO) throws Exception {
 		
 		Product product = new Product();
 		
-		product.setCodigo(Integer.parseInt(item.getCodigo()));
-		product.setNombre(item.getNombre());
-		product.setPrecio(Double.parseDouble(item.getPrecio()));
-		product.setFamilia(item.getFamilia());
-		product.setDescatalogado(Boolean.parseBoolean(item.getDescatalogado()));
-		product.setFechaAlta(sdf.parse(item.getFechaAlta()));
+		product.setCodigo(Integer.parseInt(productDTO.getCodigo()));
+		product.setNombre(productDTO.getNombre());
+		product.setPrecio(Double.parseDouble(productDTO.getPrecio()));
+		product.setFamilia(productDTO.getFamilia());
+		product.setDescatalogado(Boolean.parseBoolean(productDTO.getDescatalogado()));
+		product.setFechaAlta(sdf.parse(productDTO.getFechaAlta()));
 		
 		return product;
 	}

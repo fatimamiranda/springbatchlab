@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Product implements Serializable {
-	private static final long serialVersionUID = 156465456L;
+	private static final long serialVersionUID = 1526465456L;
 	
 	private int codigo;
 	private String nombre;

@@ -26,6 +26,5 @@ public interface ProveedorRepository extends JpaRepository<Proveedor,Long>{
 	
 	@Query("select new com.pgrsoft.springbatchlab.ejemplo10.ProveedorDTO(p.nombre, p.pais) from Proveedor p")
 	List<ProveedorDTO> findDTO();
-	
-	
+		
 }
